@@ -49,6 +49,9 @@ int main() {
         int port = ntohs(servaddr.sin_port);
         printf("client ip is %s\n, prot is %d\n", ip, port);
         printf("recive message : %s\n", message);
+        char reply[40];
+        sprintf(reply, "Hello, %s", message);
+        sendto(sockfd, reply, sizeof(reply), 0, (struct sockaddr *)&servaddr, sizeof(servaddr));
     }
 
     return 0;
