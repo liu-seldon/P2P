@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 
 #define MAX_LEN 200
 #define SERV_PORT 34567
@@ -20,7 +21,7 @@ int main() {
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     memset(&address, 0, sizeof(address));
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = inet_addr("127.0.0.1");
+    address.sin_addr.s_addr = inet_addr("119.29.197.182");
     address.sin_port = htons(SERV_PORT);
 
     socklen_t sin_len;
