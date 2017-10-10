@@ -27,7 +27,7 @@ list* head;
 
 int main() {
     int sockfd;
-    struct sockaddr_in servaddr, clientaddr;
+    struct sockaddr_in servaddr;
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
@@ -43,10 +43,10 @@ int main() {
     char message[MAX_LEN];
     
     while(1) {
-        recvfrom(sockfd, message, MAX_LEN, 0, (struct sockaddr*)&clientaddr, &sin_len);
+        recvfrom(sockfd, message, MAX_LEN, 0, (struct sockaddr*)&servaddr, &sin_len);
         printf("receive data\n");
-        char* ip = inet_ntoa(clientaddr.sin_addr);
-        printf("client ip is %s\n, prot is %d\n", ip, clientaddr.sin_port);
+        char* ip = inet_ntoa(servaddr.sin_addr);
+        printf("client ip is %s\n, prot is %d\n", ip, servaddr.sin_port);
         printf("recive message : %s\n", message);
     }
 
