@@ -46,7 +46,8 @@ int main() {
         recvfrom(sockfd, message, MAX_LEN, 0, (struct sockaddr*)&servaddr, &sin_len);
         printf("receive data\n");
         char* ip = inet_ntoa(servaddr.sin_addr);
-        printf("client ip is %s\n, prot is %d\n", ip, servaddr.sin_port);
+        int port = ntohs(servaddr.sin_port);
+        printf("client ip is %s\n, prot is %d\n", ip, port);
         printf("recive message : %s\n", message);
     }
 
